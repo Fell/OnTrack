@@ -87,6 +87,9 @@ public class VehicleController : MonoBehaviour
 
         curvyController.Position = 0.0f;
         curvyController.Play();
+
+        InputController.Instance.OnLaneDownButtonDown += OnLaneDown;
+        InputController.Instance.OnLaneUpButtonDown += OnLaneUp;
     }
 
     void OnReset()
@@ -103,6 +106,9 @@ public class VehicleController : MonoBehaviour
 
         curvyController.Position = 0.0f;
         curvyController.Stop();
+
+        InputController.Instance.OnLaneDownButtonDown -= OnLaneDown;
+        InputController.Instance.OnLaneUpButtonDown -= OnLaneUp;
     }
 
     void OnLaneUp()

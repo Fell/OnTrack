@@ -47,6 +47,18 @@ public class RythmGameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InputController.Instance.OnAButtonDown += OnNoteA;
+        InputController.Instance.OnBButtonDown += OnNoteB;
+        InputController.Instance.OnXButtonDown += OnNoteX;
+        InputController.Instance.OnYButtonDown += OnNoteY;
+        InputController.Instance.OnLaneUpButtonDown += Reset;
+
+        Reset();
+    }
+
+    private void Reset()
+    {
+        timer = 0;
         beatmap = new Queue<Note>();
 
         beatmap.Enqueue(new Note(1f, NoteType.A));
@@ -103,20 +115,43 @@ public class RythmGameController : MonoBehaviour
                 Destroy(note.noteObject);
                 note.delete = true;
             }
-                
-
-            // Remove hit notes?
-            if(Input.GetKeyDown(KeyCode.K))
-            {
-                if(diff < 0.100f && diff > -0.100f)
-                {
-                    Destroy(note.noteObject);
-                    note.delete = true;
-                }
-            }
         }
 
         activeNotes.RemoveAll(n => n.delete);        
+    }
+
+    void OnNoteA()
+    {
+        HitNote(NoteType.A);
+    }
+
+    void OnNoteB()
+    {
+        HitNote(NoteType.B);
+    }
+
+    void OnNoteX()
+    {
+        HitNote(NoteType.X);
+    }
+
+    void OnNoteY()
+    {
+        HitNote(NoteType.Y);
+    }
+
+    void HitNote(NoteType type)
+    {
+        foreach(Note note in activeNotes)
+        {
+            if(note.type == type && timer - note.hitTime < 0.033f && timer - note.hitTime > -0.033f)
+            {
+                Destroy(note.noteObject);
+                note.delete = true;
+            }
+        }
+
+        activeNotes.RemoveAll(n => n.delete);
     }
 
     void SpawnNote(Note note)

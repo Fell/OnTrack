@@ -42,7 +42,7 @@ public class RythmGameController : MonoBehaviour
     public GameObject noteXPrefab;
     public GameObject noteYPrefab;
 
-    public UIParticleSystem ParticleSystem = null;
+    public UIParticleSystem[] ParticleSystems;
 
     public GameObject GameHUDGO = null;
     public GameObject StartTextGO = null;
@@ -141,12 +141,12 @@ public class RythmGameController : MonoBehaviour
 
     public void StartModifier(PowerUpTypes types)
     {
-
+        Debug.Log("Enter");
     }
 
     public void EndModifier(PowerUpTypes types)
     {
-
+        Debug.Log("Exit");
     }
 
     // Update is called once per frame
@@ -256,8 +256,8 @@ public class RythmGameController : MonoBehaviour
 
                 Destroy(note.noteObject);
                 note.delete = true;
-
-                ParticleSystem.Play();
+                
+                ParticleSystems[(int)note.type].Play();
             }
         }
 

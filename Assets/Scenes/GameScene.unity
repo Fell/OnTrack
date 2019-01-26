@@ -1515,7 +1515,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 967119ee5886eb74f93027421971dd1e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ed1b3635305d57b449b39b81ca8f92ab, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2029,6 +2029,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4107686860881745234, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: clickAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4938132388777892630, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -2055,6 +2060,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1230406425096658228, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811596646178000510, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4811596646178000510, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1

@@ -32,8 +32,6 @@ public class RythmGameController : MonoBehaviour
 
     bool isPlaying = false;
 
-    public AudioSource clickAudio;
-
     public AudioSource audioSource;
     public Image rythmTarget;
     public TMPro.TextMeshProUGUI feedbackText;
@@ -89,8 +87,6 @@ public class RythmGameController : MonoBehaviour
     {
         StartTextGO.SetActive(true);
         GameHUDGO.SetActive(false);
-
-        clickAudio.Stop();
         timer = 0;
         score = 0;
         combo = 0;
@@ -99,7 +95,7 @@ public class RythmGameController : MonoBehaviour
         scoreText.SetText(score.ToString());
         comboText.SetText(combo.ToString());
 
-        beatmap = MakeBeatmap(120, "BBBBA---A---A---B---A---A---A---X-X-----X---X---Y-Y-Y---Y-Y-Y---");
+        beatmap = MakeBeatmap(172, "--A-A-BB-A-A-A-X-X---------------A-A-BB-A-Y-X-X--------");
 
         nextNote = beatmap.Dequeue();
     }
@@ -186,9 +182,6 @@ public class RythmGameController : MonoBehaviour
             rythmTarget.color = Color.white;
             resetFlashTimer = 0;
         }
-
-        if(timer > 0 && !clickAudio.isPlaying)
-            clickAudio.Play();
     }
 
     void OnNoteA()

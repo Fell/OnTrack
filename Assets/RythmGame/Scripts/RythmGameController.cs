@@ -99,29 +99,38 @@ public class RythmGameController : MonoBehaviour
         scoreText.SetText(score.ToString());
         comboText.SetText(combo.ToString());
 
-        beatmap = new Queue<Note>();
-
-        beatmap.Enqueue(new Note(2+0.0f, NoteType.B));
-        beatmap.Enqueue(new Note(2+0.5f, NoteType.A));
-        beatmap.Enqueue(new Note(2+1.0f, NoteType.A));
-        beatmap.Enqueue(new Note(2+1.5f, NoteType.A));
-                                                  
-        beatmap.Enqueue(new Note(4+0.0f, NoteType.B));
-        beatmap.Enqueue(new Note(4+0.5f, NoteType.A));
-        beatmap.Enqueue(new Note(4+1.0f, NoteType.A));
-        beatmap.Enqueue(new Note(4+1.5f, NoteType.A));
-                                                  
-        beatmap.Enqueue(new Note(6+0.0f, NoteType.B));
-        beatmap.Enqueue(new Note(6+0.5f, NoteType.A));
-        beatmap.Enqueue(new Note(6+1.0f, NoteType.A));
-        beatmap.Enqueue(new Note(6+1.5f, NoteType.A));
-                                                  
-        beatmap.Enqueue(new Note(8+0.0f, NoteType.B));
-        beatmap.Enqueue(new Note(8+0.5f, NoteType.A));
-        beatmap.Enqueue(new Note(8+1.0f, NoteType.A));
-        beatmap.Enqueue(new Note(8+1.5f, NoteType.A));
+        beatmap = MakeBeatmap(120, "BBBBA---A---A---B---A---A---A---X-X-----X---X---Y-Y-Y---Y-Y-Y---");
 
         nextNote = beatmap.Dequeue();
+    }
+
+    Queue<Note> MakeBeatmap(int bpm, string data)
+    {
+        Queue<Note> result = new Queue<Note>();
+
+        float timeStep = bpm / 60f / 16f;
+        float pos = 0;
+        foreach(char c in data)
+        {
+            switch(c)
+            {
+                case 'A':
+                    result.Enqueue(new Note(pos, NoteType.A));
+                    break;
+                case 'B':
+                    result.Enqueue(new Note(pos, NoteType.B));
+                    break;
+                case 'X':
+                    result.Enqueue(new Note(pos, NoteType.X));
+                    break;
+                case 'Y':
+                    result.Enqueue(new Note(pos, NoteType.Y));
+                    break;
+            }
+            pos += timeStep;
+        }
+
+        return result;
     }
 
     void Play()

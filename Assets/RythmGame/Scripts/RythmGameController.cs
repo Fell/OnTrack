@@ -52,7 +52,7 @@ public class RythmGameController : MonoBehaviour
         InputController.Instance.OnBButtonDown += OnNoteB;
         InputController.Instance.OnXButtonDown += OnNoteX;
         InputController.Instance.OnYButtonDown += OnNoteY;
-        InputController.Instance.OnLaneUpButtonDown += Reset;
+        InputController.Instance.OnResetButtonDown += Reset;
 
         Reset();
     }

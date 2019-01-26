@@ -1692,7 +1692,7 @@ MonoBehaviour:
   m_Speed: 30
   m_Direction: 0
   m_Clamping: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_OrientationMode: 1
   m_LockRotation: 1
   m_OrientationAxis: 0

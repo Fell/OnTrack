@@ -29,19 +29,26 @@ public class VehicleController : MonoBehaviour
     float[] lerpPercentValues = new float[] { 0.0f, 0.5f, 1.0f };
 
     bool isSwitchingLanes = false;
-    
+    FluffyUnderware.Curvy.Controllers.CurvyController curvyController = null;
+
+    // Aewake function
+    private void Awake()
+    {
+        curvyController = GetComponent<FluffyUnderware.Curvy.Controllers.CurvyController>();
+    }
+
     // Start function
     void Start()
     {
-        InputController.Instance.OnLaneDownButtonDown += LaneDown;
-        InputController.Instance.OnLaneUpButtonDown += LaneUp;
+        InputController.Instance.OnLaneDownButtonDown += OnLaneDown;
+        InputController.Instance.OnLaneUpButtonDown += OnLaneUp;
+        InputController.Instance.OnResetButtonDown += OnReset;
+        InputController.Instance.OnStartButtonDown += OnStart;
 
         laneZero = Vector3.left * OffsetFactor;
         laneTwo = Vector3.right * OffsetFactor;
 
-        LaneAudioSources[0].volume = 0.0f;
-        LaneAudioSources[1].volume = 1.0f;
-        LaneAudioSources[2].volume = 0.0f;
+        OnReset();
     }
 
     // OnDestroy function
@@ -49,8 +56,10 @@ public class VehicleController : MonoBehaviour
     {
         if(InputController.Instance != null)
         {
-            InputController.Instance.OnLaneDownButtonDown -= LaneDown;
-            InputController.Instance.OnLaneUpButtonDown -= LaneUp;
+            InputController.Instance.OnLaneDownButtonDown -= OnLaneDown;
+            InputController.Instance.OnLaneUpButtonDown -= OnLaneUp;
+            InputController.Instance.OnResetButtonDown -= OnReset;
+            InputController.Instance.OnStartButtonDown -= OnStart;
         }
     }
 
@@ -61,13 +70,48 @@ public class VehicleController : MonoBehaviour
     }
 
     // Helper functions
-    void LaneUp()
+    void OnStart()
+    {
+        if (curvyController.PlayState == FluffyUnderware.Curvy.Controllers.CurvyController.CurvyControllerState.Playing)
+            return;
+
+        laneId = 1;
+        lerpPercent = 0.5f;
+
+        LaneAudioSources[0].Play();
+        LaneAudioSources[0].volume = 0.0f;
+        LaneAudioSources[1].Play();
+        LaneAudioSources[1].volume = 1.0f;
+        LaneAudioSources[2].Play();
+        LaneAudioSources[2].volume = 0.0f;
+
+        curvyController.Position = 0.0f;
+        curvyController.Play();
+    }
+
+    void OnReset()
+    {
+        laneId = 1;
+        lerpPercent = 0.5f;
+
+        LaneAudioSources[0].Stop();
+        LaneAudioSources[0].volume = 0.0f;
+        LaneAudioSources[1].Stop();
+        LaneAudioSources[1].volume = 0.0f;
+        LaneAudioSources[2].Stop();
+        LaneAudioSources[2].volume = 0.0f;
+
+        curvyController.Position = 0.0f;
+        curvyController.Stop();
+    }
+
+    void OnLaneUp()
     {
         if (!isSwitchingLanes && laneId <= 1)
             StartCoroutine(SwitchLaneTo(laneId + 1));
     }
 
-    void LaneDown()
+    void OnLaneDown()
     {
         if (!isSwitchingLanes && laneId >= 1)
             StartCoroutine(SwitchLaneTo(laneId - 1));

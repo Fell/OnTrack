@@ -15,6 +15,7 @@ public class InputController : MonoBehaviour
     public System.Action OnXButtonDown;
     public System.Action OnYButtonDown;
 
+    public System.Action OnResetButtonDown;
 
     // Private variables
     Player player = null;
@@ -50,6 +51,8 @@ public class InputController : MonoBehaviour
         player.AddInputEventDelegate(OnBButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Button B");
         player.AddInputEventDelegate(OnXButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Button X");
         player.AddInputEventDelegate(OnYButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Button Y");
+
+        player.AddInputEventDelegate(OnResetButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Reset");
     }
 
     // Interface functions
@@ -104,6 +107,13 @@ public class InputController : MonoBehaviour
     {
         if (OnYButtonDown != null)
             OnYButtonDown.Invoke();
+    }
+
+    void OnResetButtonPushed(InputActionEventData data)
+    {
+        Debug.Log("Called");
+        if (OnResetButtonDown != null)
+            OnResetButtonDown.Invoke();
     }
 
     // This corroutine is required to play a vibration profile

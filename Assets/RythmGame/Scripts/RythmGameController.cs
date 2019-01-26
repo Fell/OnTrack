@@ -44,6 +44,9 @@ public class RythmGameController : MonoBehaviour
     public GameObject noteXPrefab;
     public GameObject noteYPrefab;
 
+    public GameObject GameHUDGO = null;
+    public GameObject StartTextGO = null;
+
     float noteRampTime = 1;
 
     Queue<Note> beatmap;
@@ -84,6 +87,9 @@ public class RythmGameController : MonoBehaviour
 
     private void Reset()
     {
+        StartTextGO.SetActive(true);
+        GameHUDGO.SetActive(false);
+
         clickAudio.Stop();
         timer = 0;
         score = 0;
@@ -121,6 +127,9 @@ public class RythmGameController : MonoBehaviour
     void Play()
     {
         isPlaying = true;
+
+        StartTextGO.SetActive(false);
+        GameHUDGO.SetActive(true);
     }
 
     // Update is called once per frame
@@ -268,7 +277,7 @@ public class RythmGameController : MonoBehaviour
                 break;
         }
 
-        GameObject noteObject = GameObject.Instantiate(prefab, transform);
+        GameObject noteObject = GameObject.Instantiate(prefab, GameHUDGO.transform);
         note.noteObject = noteObject;
         activeNotes.Add(note);
     }

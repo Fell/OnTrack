@@ -42,6 +42,8 @@ public class RythmGameController : MonoBehaviour
     public GameObject noteXPrefab;
     public GameObject noteYPrefab;
 
+    public UIParticleSystem ParticleSystem = null;
+
     public GameObject GameHUDGO = null;
     public GameObject StartTextGO = null;
 
@@ -135,6 +137,16 @@ public class RythmGameController : MonoBehaviour
 
         StartTextGO.SetActive(false);
         GameHUDGO.SetActive(true);
+    }
+
+    public void StartModifier(PowerUpTypes types)
+    {
+
+    }
+
+    public void EndModifier(PowerUpTypes types)
+    {
+
     }
 
     // Update is called once per frame
@@ -244,6 +256,8 @@ public class RythmGameController : MonoBehaviour
 
                 Destroy(note.noteObject);
                 note.delete = true;
+
+                ParticleSystem.Play();
             }
         }
 

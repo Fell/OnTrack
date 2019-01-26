@@ -48,6 +48,11 @@ public class RythmGameController : MonoBehaviour
     public GameObject StartTextGO = null;
 
     float noteRampTime = 1.5f;
+    float noteCalibration = -0.016f;
+
+    Queue<Note> easyBeatmap;
+    Queue<Note> normalBeatmap;
+    Queue<Note> hardBeatmap;
 
     Queue<Note> beatmap;
     List<Note> activeNotes = new List<Note>();
@@ -97,14 +102,14 @@ public class RythmGameController : MonoBehaviour
         scoreText.SetText(score.ToString());
         comboText.SetText(combo.ToString());
 
-        beatmap = MakeBeatmap(172, "++" +
+        hardBeatmap = MakeBeatmap(172, "++" +
             "--A-A-BB-A-A-A-X" + // CHORUS 1
             "-X--------------" +
-            "--A-A-BB-A-Y-X-X" +
+            "--A-A-BB-A-X-Y-Y" +
             "+" +
             "--A-A-BB-A-A-A-X" +
             "-X--------------" +
-            "--A-A-BB-A-Y-X-X" +
+            "--A-A-BB-A-X-Y-Y" +
             "+" +
             "Y-Y----A-AA-----" + // VERSE 1
             "X-X----A-AB-----" +
@@ -116,18 +121,18 @@ public class RythmGameController : MonoBehaviour
             "-----X-X--------" +
             "--A-A-BB-A-A-A-X" + // CHORUS 2
             "-X--------------" +
-            "--A-A-BB-A-Y-X-X" +
-            "Y-Y--Y-Y-Y-Y-Y--" +
+            "--A-A-BB-A-X-Y-Y" +
+            "X-X--X-X-X-X-X--" +
             "--A-A-BB-A-A-A-X" +
             "-X--------------" +
-            "--A-A-BB-A-Y-X-X" +
-            "+" +
-            "A-A----A-AA-----" + // VERSE 2
-            "A-A----A-AB-----" +
-            "A-A----A-AA-----" +
-            "A-A----A-AB-----" +
-            "B-----BB----B---" + // CHIMES 2
-            "B-----BB--------" +
+            "--A-A-BB-A-X-Y-Y" +
+            "X-X--X-X-X-X-X--" +
+            "Y-Y----A-AA-----" + // VERSE 2
+            "X-X----A-AB-----" +
+            "Y-Y----A-AA-----" +
+            "X-X----A-AB-----" +
+            "X-----AA----A---" + // CHIMES 2
+            "X-----YY--------" +
             "----AA-A-B-A-X-A" +
             "-----A-A--------" +
             "----A-XX--------" + // SLAP
@@ -148,6 +153,60 @@ public class RythmGameController : MonoBehaviour
             "+" +
             "--A-A-BB-A-A-A-X" + // ENDING
             "-X----YY--------");
+
+        normalBeatmap = MakeBeatmap(172, "++" +
+            "--A-A-BB-A-A-A-A" + // CHORUS 1
+            "-A--------------" +
+            "--A-A-BB-A-A-B-B" +
+            "+" +
+            "--A-A-BB-A-A-A-A" +
+            "-A--------------" +
+            "--A-A-BB-A-A-B-B" +
+            "+" +
+            "B-B----A-AA-----" + // VERSE 1
+            "A-A----A-AB-----" +
+            "B-B----A-AA-----" +
+            "A-A----A-AB-----" +
+            "A-----AA----A---" + // CHIMES 1
+            "A-----BB--------" +
+            "----AA-B-B-B-B-B" +
+            "-----A-A--------" +
+            "--A-A-BB-A-A-A-A" + // CHORUS 2
+            "-A--------------" +
+            "--A-A-BB-A-A-B-B" +
+            "+" +
+            "--A-A-BB-A-A-A-A" +
+            "-A--------------" +
+            "--A-A-BB-A-A-B-B" +
+            "+" +
+            "B-B----A-AA-----" + // VERSE 2
+            "A-A----A-AB-----" +
+            "B-B----A-AA-----" +
+            "A-A----A-AB-----" +
+            "A-----AA----A---" + // CHIMES 2
+            "A-----BB--------" +
+            "----AA-A-B-A-A-A" +
+            "-----A-A--------" +
+            "----A-AA--------" + // SLAP
+            "---A-A-B-B-A-A--" +
+            "----A-AA--------" +
+            "------------B-B-" + // SOLO
+            "B-----AA-A-A-A-A" +
+            "-----B-B------B-" +
+            "B-AA-A-A-A-A--A-" +
+            "A--B--B--A--A-A-" + // CHORUS 3
+            "--A-A-BB-A-A-A-B" +
+            "-B--------------" +
+            "--A-A-BB-A-A-B-B" +
+            "+" +
+            "--A-A-BB-A-A-A-B" +
+            "-B--------------" +
+            "--A-A-BB-A-A-B-B" +
+            "+" +
+            "--A-A-BB-A-A-A-A" + // ENDING
+            "-A----BB--------");
+
+        beatmap = hardBeatmap;
 
         nextNote = beatmap.Dequeue();
     }
@@ -225,7 +284,7 @@ public class RythmGameController : MonoBehaviour
         // Update active notes
         foreach(Note note in activeNotes)
         {
-            float diff = timer - note.hitTime;
+            float diff = timer - note.hitTime + noteCalibration;
             note.noteObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-1060 * (diff / noteRampTime) * -1, 0);
 
             // Remove off-screen notes
@@ -278,21 +337,22 @@ public class RythmGameController : MonoBehaviour
         feedbackText.SetText("");
         foreach(Note note in activeNotes)
         {
-            if(note.type == type && timer - note.hitTime < 0.1f && timer - note.hitTime > -0.1f)
+            float diff = timer - note.hitTime + noteCalibration;
+            if(note.type == type && diff < 0.1f && diff > -0.1f)
             {
-                if(timer - note.hitTime < 0.033f && timer - note.hitTime > -0.033f)
+                if(diff < 0.033f && diff > -0.033f)
                 {
                     feedbackText.SetText("Perfect");
                     score += 250 + 10 * combo;
                     combo++;
                 }
-                else if(timer - note.hitTime < 0.050f && timer - note.hitTime > -0.050f)
+                else if(diff < 0.050f && diff > -0.050f)
                 {
                     feedbackText.SetText("Good");
                     score += 100 + 10 * combo;
                     combo++;
                 }
-                else if(timer - note.hitTime < 0.066f && timer - note.hitTime > -0.066f)
+                else if(diff < 0.066f && diff > -0.066f)
                 {
                     feedbackText.SetText("OK");
                     score += 50;

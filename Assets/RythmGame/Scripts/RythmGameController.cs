@@ -28,8 +28,17 @@ public class Note
 
 public class RythmGameController : MonoBehaviour
 {
+    public static RythmGameController Instance { get; private set; }
+
+    bool isPlaying = false;
+
+    public AudioSource clickAudio;
+
     public AudioSource audioSource;
     public Image rythmTarget;
+    public TMPro.TextMeshProUGUI feedbackText;
+    public TMPro.TextMeshProUGUI scoreText;
+    public TMPro.TextMeshProUGUI comboText;
     public GameObject noteAPrefab;
     public GameObject noteBPrefab;
     public GameObject noteXPrefab;
@@ -45,6 +54,21 @@ public class RythmGameController : MonoBehaviour
 
     float resetFlashTimer = 0.0f;
 
+    int score = 0;
+    int combo = 0;
+
+    // Awake function
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+            Destroy(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,44 +77,59 @@ public class RythmGameController : MonoBehaviour
         InputController.Instance.OnXButtonDown += OnNoteX;
         InputController.Instance.OnYButtonDown += OnNoteY;
         InputController.Instance.OnResetButtonDown += Reset;
+        InputController.Instance.OnStartButtonDown += Play;
 
         Reset();
     }
 
     private void Reset()
     {
+        clickAudio.Stop();
         timer = 0;
+        score = 0;
+        combo = 0;
+        isPlaying = false;
+
+        scoreText.SetText(score.ToString());
+        comboText.SetText(combo.ToString());
+
         beatmap = new Queue<Note>();
 
-        beatmap.Enqueue(new Note(1f, NoteType.A));
-        beatmap.Enqueue(new Note(1.4f, NoteType.A));
-        beatmap.Enqueue(new Note(1.8f, NoteType.B));
-        beatmap.Enqueue(new Note(2.0f, NoteType.B));
-        beatmap.Enqueue(new Note(2.2f, NoteType.B));
-
-        beatmap.Enqueue(new Note(2.6f, NoteType.A));
-        beatmap.Enqueue(new Note(3f, NoteType.X));
-        beatmap.Enqueue(new Note(3.4f, NoteType.Y));
-        beatmap.Enqueue(new Note(3.8f, NoteType.B));
-
-        beatmap.Enqueue(new Note(4.2f, NoteType.A));
-        beatmap.Enqueue(new Note(4.6f, NoteType.A));
-        beatmap.Enqueue(new Note(5f, NoteType.B));
-        beatmap.Enqueue(new Note(5.2f, NoteType.B));
-        beatmap.Enqueue(new Note(5.4f, NoteType.B));
-
-        beatmap.Enqueue(new Note(5.8f, NoteType.A));
-        beatmap.Enqueue(new Note(6.2f, NoteType.X));
-        beatmap.Enqueue(new Note(6.6f, NoteType.Y));
-        beatmap.Enqueue(new Note(7.0f, NoteType.B));
+        beatmap.Enqueue(new Note(2+0.0f, NoteType.B));
+        beatmap.Enqueue(new Note(2+0.5f, NoteType.A));
+        beatmap.Enqueue(new Note(2+1.0f, NoteType.A));
+        beatmap.Enqueue(new Note(2+1.5f, NoteType.A));
+                                                  
+        beatmap.Enqueue(new Note(4+0.0f, NoteType.B));
+        beatmap.Enqueue(new Note(4+0.5f, NoteType.A));
+        beatmap.Enqueue(new Note(4+1.0f, NoteType.A));
+        beatmap.Enqueue(new Note(4+1.5f, NoteType.A));
+                                                  
+        beatmap.Enqueue(new Note(6+0.0f, NoteType.B));
+        beatmap.Enqueue(new Note(6+0.5f, NoteType.A));
+        beatmap.Enqueue(new Note(6+1.0f, NoteType.A));
+        beatmap.Enqueue(new Note(6+1.5f, NoteType.A));
+                                                  
+        beatmap.Enqueue(new Note(8+0.0f, NoteType.B));
+        beatmap.Enqueue(new Note(8+0.5f, NoteType.A));
+        beatmap.Enqueue(new Note(8+1.0f, NoteType.A));
+        beatmap.Enqueue(new Note(8+1.5f, NoteType.A));
 
         nextNote = beatmap.Dequeue();
+    }
+
+    void Play()
+    {
+        isPlaying = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float deltaTime = Time.deltaTime;
+        if(!isPlaying)
+            return;
+
+        float deltaTime = Time.deltaTime;      
         timer += deltaTime;
 
         // Spawn overdue notes
@@ -129,6 +168,9 @@ public class RythmGameController : MonoBehaviour
             rythmTarget.color = Color.white;
             resetFlashTimer = 0;
         }
+
+        if(timer > 0 && !clickAudio.isPlaying)
+            clickAudio.Play();
     }
 
     void OnNoteA()
@@ -157,14 +199,45 @@ public class RythmGameController : MonoBehaviour
 
     void HitNote(NoteType type)
     {
+        feedbackText.SetText("");
         foreach(Note note in activeNotes)
         {
             if(note.type == type && timer - note.hitTime < 0.1f && timer - note.hitTime > -0.1f)
             {
+                if(timer - note.hitTime < 0.033f && timer - note.hitTime > -0.033f)
+                {
+                    feedbackText.SetText("Perfect");
+                    score += 250 + 10 * combo;
+                    combo++;
+                }
+                else if(timer - note.hitTime < 0.050f && timer - note.hitTime > -0.050f)
+                {
+                    feedbackText.SetText("Good");
+                    score += 100 + 10 * combo;
+                    combo++;
+                }
+                else if(timer - note.hitTime < 0.066f && timer - note.hitTime > -0.066f)
+                {
+                    feedbackText.SetText("OK");
+                    score += 50;
+                    combo = 0;
+                }
+                else
+                {
+                    feedbackText.SetText("Bad");
+                    score += 10;
+                    combo = 0;
+                }
+
+                //TODO(Felix): Reset combo when nothing is pressed
+
                 Destroy(note.noteObject);
                 note.delete = true;
             }
         }
+
+        scoreText.SetText(score.ToString());
+        comboText.SetText(combo.ToString());
 
         activeNotes.RemoveAll(n => n.delete);
         audioSource.PlayOneShot(audioSource.clip);

@@ -2029,6 +2029,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4938132388777892630, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938132388777892630, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666217678235147083, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666217678235147083, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230406425096658228, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1230406425096658228, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99397919d6ab066469c643691e0fd523, type: 3}
 --- !u!1 &1032537940

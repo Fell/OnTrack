@@ -47,7 +47,7 @@ public class RythmGameController : MonoBehaviour
     public GameObject GameHUDGO = null;
     public GameObject StartTextGO = null;
 
-    float noteRampTime = 1;
+    float noteRampTime = 1.5f;
 
     Queue<Note> beatmap;
     List<Note> activeNotes = new List<Note>();
@@ -97,7 +97,57 @@ public class RythmGameController : MonoBehaviour
         scoreText.SetText(score.ToString());
         comboText.SetText(combo.ToString());
 
-        beatmap = MakeBeatmap(172, "--A-A-BB-A-A-A-X-X---------------A-A-BB-A-Y-X-X--------");
+        beatmap = MakeBeatmap(172, "++" +
+            "--A-A-BB-A-A-A-X" + // CHORUS 1
+            "-X--------------" +
+            "--A-A-BB-A-Y-X-X" +
+            "+" +
+            "--A-A-BB-A-A-A-X" +
+            "-X--------------" +
+            "--A-A-BB-A-Y-X-X" +
+            "+" +
+            "Y-Y----A-AA-----" + // VERSE 1
+            "X-X----A-AB-----" +
+            "Y-Y----A-AA-----" +
+            "X-X----A-AB-----" +
+            "X-----AA----A---" + // CHIMES 1
+            "X-----YY--------" +
+            "----AA-B-B-B-B-B" +
+            "-----X-X--------" +
+            "--A-A-BB-A-A-A-X" + // CHORUS 2
+            "-X--------------" +
+            "--A-A-BB-A-Y-X-X" +
+            "Y-Y--Y-Y-Y-Y-Y--" +
+            "--A-A-BB-A-A-A-X" +
+            "-X--------------" +
+            "--A-A-BB-A-Y-X-X" +
+            "+" +
+            "A-A----A-AA-----" + // VERSE 2
+            "A-A----A-AB-----" +
+            "A-A----A-AA-----" +
+            "A-A----A-AB-----" +
+            "B-----BB----B---" + // CHIMES 2
+            "B-----BB--------" +
+            "----AA-A-B-A-X-A" +
+            "-----A-A--------" +
+            "----A-XX--------" + // SLAP
+            "---A-A-B-B-X-X--" +
+            "----A-XX--------" +
+            "------------Y-Y-" + // SOLO
+            "Y-----XX-A-A-A-A" +
+            "-----Y-B------B-" +
+            "B-AA-A-A-A-A--A-" +
+            "A--B--Y--X--A-X-" + // CHORUS 3
+            "--X-X-YY-X-X-X-B" +
+            "-B--------------" +
+            "--X-X-YY-X-A-B-B" +
+            "+" +
+            "--X-X-YY-X-X-X-B" +
+            "-B--------------" +
+            "--X-X-YY-X-A-B-B" +
+            "+" +
+            "--A-A-BB-A-A-A-X" + // ENDING
+            "-X----YY--------");
 
         nextNote = beatmap.Dequeue();
     }
@@ -106,10 +156,10 @@ public class RythmGameController : MonoBehaviour
     {
         Queue<Note> result = new Queue<Note>();
 
-        float timeStep = bpm / 60f / 16f;
+        float timeStep = (1f / (bpm / 60f)) / 2f;
         float pos = 0;
         foreach(char c in data)
-        {
+        { 
             switch(c)
             {
                 case 'A':
@@ -123,6 +173,9 @@ public class RythmGameController : MonoBehaviour
                     break;
                 case 'Y':
                     result.Enqueue(new Note(pos, NoteType.Y));
+                    break;
+                case '+':
+                    pos += timeStep * 15;
                     break;
             }
             pos += timeStep;

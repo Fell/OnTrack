@@ -15,6 +15,9 @@ public class VehicleController : MonoBehaviour
 
     public VibrationProfile LaneSwitchVibrationProfile = null;
 
+    public AudioSource LaneSwitchUpAudioSource = null;
+    public AudioSource LaneSwitchDownAudioSource = null;
+
     // Private variables
     int laneId = 1;
 
@@ -73,6 +76,11 @@ public class VehicleController : MonoBehaviour
     IEnumerator SwitchLaneTo(int newLaneId)
     {
         isSwitchingLanes = true;
+
+        if (newLaneId > laneId)
+            LaneSwitchUpAudioSource.PlayOneShot(LaneSwitchUpAudioSource.clip);
+        else
+            LaneSwitchDownAudioSource.PlayOneShot(LaneSwitchDownAudioSource.clip);
 
         if (LaneSwitchVibrationProfile != null)
             LaneSwitchVibrationProfile.Vibrate();

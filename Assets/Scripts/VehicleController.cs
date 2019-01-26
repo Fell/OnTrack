@@ -5,6 +5,10 @@ using UnityEngine;
 public class VehicleController : MonoBehaviour
 {
     // Public variables
+    public static VehicleController Instance { get; private set; }
+    public int LaneId { get; set; } = 1;
+
+    // Public variables
     public Transform vehicleTrans;
     public float OffsetFactor = 5.0f;
 
@@ -17,10 +21,6 @@ public class VehicleController : MonoBehaviour
 
     public AudioSource LaneSwitchUpAudioSource = null;
     public AudioSource LaneSwitchDownAudioSource = null;
-
-    // Private variables
-    int laneId = 1;
-
     Vector3 laneOne = Vector3.zero;
     Vector3 laneZero;
     Vector3 laneTwo;
@@ -35,6 +35,14 @@ public class VehicleController : MonoBehaviour
     private void Awake()
     {
         curvyController = GetComponent<FluffyUnderware.Curvy.Controllers.CurvyController>();
+
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+            Destroy(gameObject);
     }
 
     // Start function
@@ -75,7 +83,7 @@ public class VehicleController : MonoBehaviour
         if (curvyController.PlayState == FluffyUnderware.Curvy.Controllers.CurvyController.CurvyControllerState.Playing)
             return;
 
-        laneId = 1;
+        LaneId = 1;
         lerpPercent = 0.5f;
 
         LaneAudioSources[0].Play();
@@ -94,7 +102,7 @@ public class VehicleController : MonoBehaviour
 
     void OnReset()
     {
-        laneId = 1;
+        LaneId = 1;
         lerpPercent = 0.5f;
 
         LaneAudioSources[0].Stop();
@@ -113,21 +121,21 @@ public class VehicleController : MonoBehaviour
 
     void OnLaneUp()
     {
-        if (!isSwitchingLanes && laneId <= 1)
-            StartCoroutine(SwitchLaneTo(laneId + 1));
+        if (!isSwitchingLanes && LaneId <= 1)
+            StartCoroutine(SwitchLaneTo(LaneId + 1));
     }
 
     void OnLaneDown()
     {
-        if (!isSwitchingLanes && laneId >= 1)
-            StartCoroutine(SwitchLaneTo(laneId - 1));
+        if (!isSwitchingLanes && LaneId >= 1)
+            StartCoroutine(SwitchLaneTo(LaneId - 1));
     }
 
     IEnumerator SwitchLaneTo(int newLaneId)
     {
         isSwitchingLanes = true;
 
-        if (newLaneId > laneId)
+        if (newLaneId > LaneId)
             LaneSwitchUpAudioSource.PlayOneShot(LaneSwitchUpAudioSource.clip);
         else
             LaneSwitchDownAudioSource.PlayOneShot(LaneSwitchDownAudioSource.clip);
@@ -144,17 +152,17 @@ public class VehicleController : MonoBehaviour
         {
             percent += (Time.deltaTime / LaneTransitionDuration);
 
-            LaneAudioSources[laneId].volume = 1.0f - percent;
+            LaneAudioSources[LaneId].volume = 1.0f - percent;
             LaneAudioSources[newLaneId].volume = percent;
 
             lerpPercent = Mathf.Lerp(from, to, percent);
             yield return null;
         }
 
-        LaneAudioSources[laneId].volume = 0.0f;
+        LaneAudioSources[LaneId].volume = 0.0f;
         LaneAudioSources[newLaneId].volume = 1.0f;
 
-        laneId = newLaneId;
+        LaneId = newLaneId;
 
         isSwitchingLanes = false;
     }

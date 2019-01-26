@@ -58,7 +58,9 @@ public class RythmGameController : MonoBehaviour
     List<Note> activeNotes = new List<Note>();
 
     float timer = 0.0f;
-    Note nextNote;
+    Note nextEasyNote;
+    Note nextNormalNote;
+    Note nextHardNote;
 
     float resetFlashTimer = 0.0f;
 
@@ -206,9 +208,11 @@ public class RythmGameController : MonoBehaviour
             "--A-A-BB-A-A-A-A" + // ENDING
             "-A----BB--------");
 
-        beatmap = hardBeatmap;
+        easyBeatmap = MakeBeatmap(172, "");
 
-        nextNote = beatmap.Dequeue();
+        nextEasyNote = (easyBeatmap.Count > 0) ? easyBeatmap.Dequeue() : null;
+        nextNormalNote = (normalBeatmap.Count > 0) ? normalBeatmap.Dequeue() : null;
+        nextHardNote = (hardBeatmap.Count > 0) ? hardBeatmap.Dequeue() : null;
     }
 
     Queue<Note> MakeBeatmap(int bpm, string data)
@@ -271,14 +275,28 @@ public class RythmGameController : MonoBehaviour
         timer += deltaTime;
 
         // Spawn overdue notes
-        if(nextNote != null && timer > nextNote.hitTime - noteRampTime)
+        if(nextEasyNote != null && timer > nextEasyNote.hitTime - noteRampTime)
         {
-            SpawnNote(nextNote);
+            if(VehicleController.Instance.LaneId == 2)
+                SpawnNote(nextEasyNote);
 
-            if(beatmap.Count > 0)
-                nextNote = beatmap.Dequeue();
-            else
-                nextNote = null;
+            nextEasyNote = (easyBeatmap.Count > 0) ? easyBeatmap.Dequeue() : null;
+        }
+
+        if(nextNormalNote != null && timer > nextNormalNote.hitTime - noteRampTime)
+        {
+            if(VehicleController.Instance.LaneId == 1)
+                SpawnNote(nextNormalNote);
+
+            nextNormalNote = (normalBeatmap.Count > 0) ? normalBeatmap.Dequeue() : null;
+        }
+
+        if(nextHardNote != null && timer > nextHardNote.hitTime - noteRampTime)
+        {
+            if(VehicleController.Instance.LaneId == 0)
+                SpawnNote(nextHardNote);
+
+            nextHardNote = (hardBeatmap.Count > 0) ? hardBeatmap.Dequeue() : null;
         }
 
         // Update active notes

@@ -860,7 +860,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.87097967, y: -0.0012345403, z: 0.096801996, w: 0.48168692}
+  m_LocalRotation: {x: -0.879313, y: -0.0004674596, z: 0.09680869, w: -0.46630096}
   m_LocalPosition: {x: 8.500001, y: 0.000001013279, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1512,7 +1512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicleTrans: {fileID: 8176445}
   OffsetFactor: 7
-  LaneTransitionDuration: 2
+  LaneTransitionDuration: 0.5
   Duration: 300
   LaneAudioSources:
   - {fileID: 1032537941}
@@ -1999,6 +1999,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MatchWidthOrHeight
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152022677153212893, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000015258789
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99397919d6ab066469c643691e0fd523, type: 3}
@@ -2891,7 +2896,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691424410}
-  m_LocalRotation: {x: -0.87097967, y: -0.0012345403, z: 0.096801996, w: 0.48168692}
+  m_LocalRotation: {x: -0.879313, y: -0.0004674596, z: 0.09680869, w: -0.46630096}
   m_LocalPosition: {x: 8.500001, y: 0.000001013279, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

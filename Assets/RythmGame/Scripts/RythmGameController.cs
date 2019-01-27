@@ -24,6 +24,7 @@ public class Note
     public NoteType type;
     public GameObject noteObject;
     public bool delete;
+    public bool missed;
 }
 
 public class RythmGameController : MonoBehaviour
@@ -37,6 +38,7 @@ public class RythmGameController : MonoBehaviour
     public TMPro.TextMeshProUGUI feedbackText;
     public TMPro.TextMeshProUGUI scoreText;
     public TMPro.TextMeshProUGUI comboText;
+    public TMPro.TextMeshProUGUI healthText;
     public GameObject noteAPrefab;
     public GameObject noteBPrefab;
     public GameObject noteXPrefab;
@@ -67,6 +69,8 @@ public class RythmGameController : MonoBehaviour
     int score = 0;
     int combo = 0;
     int health = 100;
+    int lerpedScore = 0;
+    float smoothVel = 0;
 
     // Awake function
     private void Awake()
@@ -99,11 +103,14 @@ public class RythmGameController : MonoBehaviour
         GameHUDGO.SetActive(false);
         timer = 0;
         score = 0;
+        lerpedScore = 0;
         combo = 0;
+        health = 100;
         isPlaying = false;
 
         scoreText.SetText(score.ToString());
         comboText.SetText(combo.ToString());
+        healthText.SetText(health.ToString()+"%");
 
         hardBeatmap = MakeBeatmap(172, "++" +
             "--A-A-BB-A-A-A-X" + // CHORUS 1
@@ -357,12 +364,26 @@ public class RythmGameController : MonoBehaviour
             note.noteObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-1060 * (diff / noteRampTime) * -1, 0);
 
             // Remove off-screen notes
+            if(diff > 0.100f && !note.missed)
+            {
+                feedbackText.SetText("Miss");
+                feedbackText.color = Color.red;
+                combo = 0;
+                comboText.SetText(combo.ToString());
+                health -= 10;
+                healthText.SetText(health.ToString()+"%");
+                note.missed = true;
+            }
+
             if(diff > noteRampTime)
             {
                 Destroy(note.noteObject);
                 note.delete = true;
             }
         }
+
+        health = Mathf.Clamp(health, 0, 100);
+        healthText.SetText(health.ToString() + "%");
 
         activeNotes.RemoveAll(n => n.delete);
 
@@ -375,6 +396,10 @@ public class RythmGameController : MonoBehaviour
             rythmTarget.color = Color.white;
             resetFlashTimer = 0;
         }
+
+        // Score counting effect
+        lerpedScore = (int)Mathf.SmoothDamp(lerpedScore, score, ref smoothVel, 0.25f);
+        scoreText.SetText(lerpedScore.ToString("N0"));
     }
 
     void OnNoteA()
@@ -401,9 +426,24 @@ public class RythmGameController : MonoBehaviour
         FlashRing(Color.yellow);
     }
 
+    int LaneMultiplier()
+    {
+        switch(VehicleController.Instance.LaneId)
+        {
+            case 0:
+                return 4;
+            case 1:
+                return 2;
+            default:
+            case 2:
+                return 1;
+        }
+    }
+
     void HitNote(NoteType type)
     {
         feedbackText.SetText("");
+
         foreach(Note note in activeNotes)
         {
             float diff = timer - note.hitTime + noteCalibration;
@@ -411,30 +451,32 @@ public class RythmGameController : MonoBehaviour
             {
                 if(diff < 0.033f && diff > -0.033f)
                 {
-                    feedbackText.SetText("Perfect");
-                    score += 250 + 10 * combo;
+                    feedbackText.SetText("Perfect " + combo);
+                    score += 250 * LaneMultiplier() + 10 * combo;
                     combo++;
+                    health += 7;
                 }
                 else if(diff < 0.050f && diff > -0.050f)
                 {
-                    feedbackText.SetText("Good");
-                    score += 100 + 10 * combo;
+                    feedbackText.SetText("Good " + combo);
+                    score += 100 * LaneMultiplier() + 10 * combo;
                     combo++;
+                    health += 5;
                 }
                 else if(diff < 0.066f && diff > -0.066f)
                 {
                     feedbackText.SetText("OK");
-                    score += 50;
+                    score += 50 * LaneMultiplier();
                     combo = 0;
+                    health += 2;
                 }
                 else
                 {
                     feedbackText.SetText("Bad");
-                    score += 10;
+                    score += 10 * LaneMultiplier();
                     combo = 0;
                 }
-
-                //TODO(Felix): Reset combo when nothing is pressed
+                feedbackText.color = Color.white;
 
                 Destroy(note.noteObject);
                 note.delete = true;
@@ -443,7 +485,8 @@ public class RythmGameController : MonoBehaviour
             }
         }
 
-        scoreText.SetText(score.ToString());
+        //scoreText.SetText(score.ToString());
+        healthText.SetText(health.ToString()+"%");
         comboText.SetText(combo.ToString());
 
         activeNotes.RemoveAll(n => n.delete);

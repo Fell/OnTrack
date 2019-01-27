@@ -209,7 +209,57 @@ public class RythmGameController : MonoBehaviour
             "--A-A-BB-A-A-A-A" + // ENDING
             "-A----BB--------");
 
-        easyBeatmap = MakeBeatmap(172, "");
+        easyBeatmap = MakeBeatmap(172, "++" +
+            "--A-A--A-A-A-A-A" + // CHORUS 1
+            "-A--------------" +
+            "--B-B--B-B-B-B-B" +
+            "+" +
+            "--A-A--A-A-A-A-A" +
+            "-A--------------" +
+            "--B-B--B-B-B-B-B" +
+            "+" +
+            "B-B----A--A-----" + // VERSE 1
+            "A-A----B--B-----" +
+            "B-B----A--A-----" +
+            "A-A----B--B-----" +
+            "B-B----A--A-----" + // VERSE 1
+            "A-A----B--B-----" +
+            "B-B----A--A-----" +
+            "A-A----B--B-----" +
+            "--A-A--A-A-A-A-A" + // CHORUS 1
+            "-A--------------" +
+            "--B-B--B-B-B-B-B" +
+            "+" +
+            "--A-A--A-A-A-A-A" +
+            "-A--------------" +
+            "--B-B--B-B-B-B-B" +
+            "+" +
+            "B-B----A--A-----" + // VERSE 1
+            "A-A----B--B-----" +
+            "B-B----A--A-----" +
+            "A-A----B--B-----" +
+            "B-B----A--A-----" + // VERSE 1
+            "A-A----B--B-----" +
+            "B-B----A--A-----" +
+            "A-A----B--B-----" +
+            "----A--A--------" + // SLAP
+            "---A-A-A-A-A-A--" +
+            "----A--A--------" +
+            "------------B-B-" + // SOLO
+            "B------A-A-A-A-A" +
+            "-----B-B------B-" +
+            "B--A-A-A-A-A--A-" +
+            "A--A--A--A--A-A-" +
+            "--A-A--A-A-A-A-A" + // CHORUS 3
+            "-A--------------" +
+            "--B-B--B-B-B-B-B" +
+            "+" +
+            "--A-A--A-A-A-A-A" +
+            "-A--------------" +
+            "--B-B--B-B-B-B-B" +
+            "+" +
+            "--A-A--A-A-A-A-A" + // ENDING
+            "-A----BB--------");
 
         nextEasyNote = (easyBeatmap.Count > 0) ? easyBeatmap.Dequeue() : null;
         nextNormalNote = (normalBeatmap.Count > 0) ? normalBeatmap.Dequeue() : null;

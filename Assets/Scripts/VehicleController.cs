@@ -52,9 +52,6 @@ public class VehicleController : MonoBehaviour
             Destroy(gameObject);
     }
 
-=======
-    
->>>>>>> d4306a68461f01cfcb9bc1173c919315dcc0b760
     // Start function
     void Start()
     {
@@ -90,12 +87,7 @@ public class VehicleController : MonoBehaviour
     // Helper functions
     void OnStart()
     {
-
-        if (curvyController.PlayState == FluffyUnderware.Curvy.Controllers.CurvyController.CurvyControllerState.Playing)
-            return;
-
         LaneId = 1;
-
         lerpPercent = 0.5f;
 
         LaneAudioSources[0].Play();

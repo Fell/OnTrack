@@ -34,6 +34,7 @@ public class RythmGameController : MonoBehaviour
     bool isPlaying = false;
 
     public AudioSource audioSource;
+    public AudioSource endAudioSource;
     public Image rythmTarget;
     public TMPro.TextMeshProUGUI feedbackText;
     public TMPro.TextMeshProUGUI scoreText;
@@ -160,7 +161,7 @@ public class RythmGameController : MonoBehaviour
             "------------Y-Y-" + // SOLO
             "Y-----XX-A-A-A-A" +
             "-----Y-B------B-" +
-            "B-AA-A-A-A-A--A-" +
+            "B-AA-X-X-Y-Y--A-" +
             "A--B--Y--X--A-X-" + // CHORUS 3
             "--X-X-YY-X-X-X-B" +
             "-B--------------" +
@@ -393,7 +394,10 @@ public class RythmGameController : MonoBehaviour
         }
 
         if(health <= 0)
-            EndSong(false);
+            FailSong();
+
+        if(hardBeatmap.Count == 0 && isPlaying)
+            Invoke("ClearSong", 5.0f);
 
         health = Mathf.Clamp(health, 0, 100);
         healthText.SetText(health.ToString() + "%");
@@ -540,7 +544,7 @@ public class RythmGameController : MonoBehaviour
         activeNotes.Add(note);
     }
 
-    void EndSong(bool cleared)
+    void FailSong()
     {
         StartTextGO.SetActive(false);
         GameHUDGO.SetActive(false);
@@ -549,6 +553,19 @@ public class RythmGameController : MonoBehaviour
         isPlaying = false;
 
         finalScoreText.SetText(score.ToString("N0"));
-        finalRatingText.SetText(cleared ? "Welcome Home!" : "You are lost...");
+        finalRatingText.SetText("You are lost...");
+    }
+
+    void ClearSong()
+    {
+        endAudioSource.PlayOneShot(endAudioSource.clip);
+        StartTextGO.SetActive(false);
+        GameHUDGO.SetActive(false);
+        EndHUD.SetActive(true);
+
+        isPlaying = false;
+
+        finalScoreText.SetText(score.ToString("N0"));
+        finalRatingText.SetText("Welcome Home!");
     }
 }

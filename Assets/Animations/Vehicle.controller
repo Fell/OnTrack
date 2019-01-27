@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cube_animation_trail
+  m_Name: Vehicle
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IsRunning
@@ -147,7 +147,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ef6a675dd06985948bcca354e585580a, type: 3}
+  m_Motion: {fileID: 7400000, guid: be706312ac5a9ba4a9cf7c54f6e74889, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -164,7 +164,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102750037660486160}
-    m_Position: {x: 348, y: 204, z: 0}
+    m_Position: {x: 252, y: 156, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102635429073895928}
     m_Position: {x: 312, y: 24, z: 0}

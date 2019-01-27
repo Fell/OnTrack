@@ -9,6 +9,7 @@ public class InputController : MonoBehaviour
 
     public System.Action OnLaneDownButtonDown;
     public System.Action OnLaneUpButtonDown;
+    public System.Action OnHornButtonDown;
 
     public System.Action OnAButtonDown;
     public System.Action OnBButtonDown;
@@ -47,6 +48,7 @@ public class InputController : MonoBehaviour
 
         player.AddInputEventDelegate(OnLaneDownButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Lane Down");
         player.AddInputEventDelegate(OnLaneUpButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Lane Up");
+        player.AddInputEventDelegate(OnHornButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Horn");
 
         player.AddInputEventDelegate(OnAButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Button A");
         player.AddInputEventDelegate(OnBButtonPushed, UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Button B");
@@ -85,6 +87,12 @@ public class InputController : MonoBehaviour
     {
         if (OnLaneUpButtonDown != null)
             OnLaneUpButtonDown.Invoke();
+    }
+
+    void OnHornButtonPushed(InputActionEventData data)
+    {
+        if (OnHornButtonDown != null)
+            OnHornButtonDown.Invoke();
     }
 
     void OnAButtonPushed(InputActionEventData data)

@@ -24,6 +24,9 @@ public class VehicleController : MonoBehaviour
 
     public Animator TrackAnimator = null;
 
+    public Material LeftIndicatorMat = null;
+    public Material RightIndicatorMat = null;
+
     // Private variables
     int laneId = 1;
 
@@ -32,7 +35,7 @@ public class VehicleController : MonoBehaviour
     Vector3 laneTwo;
 
     float lerpPercent = 0.5f;
-    float[] lerpPercentValues = new float[] { 0.0f, 0.5f, 1.0f };
+    float[] lerpPercentValues = new float[] { 1.0f, 0.5f, 0.0f };
 
     bool isSwitchingLanes = false;
 
@@ -101,6 +104,9 @@ public class VehicleController : MonoBehaviour
 
         InputController.Instance.OnLaneDownButtonDown += OnLaneDown;
         InputController.Instance.OnLaneUpButtonDown += OnLaneUp;
+
+        LeftIndicatorMat.DisableKeyword("_EMISSION");
+        RightIndicatorMat.DisableKeyword("_EMISSION");
     }
 
     void OnReset()
@@ -119,6 +125,9 @@ public class VehicleController : MonoBehaviour
 
         InputController.Instance.OnLaneDownButtonDown -= OnLaneDown;
         InputController.Instance.OnLaneUpButtonDown -= OnLaneUp;
+
+        LeftIndicatorMat.DisableKeyword("_EMISSION");
+        RightIndicatorMat.DisableKeyword("_EMISSION");
     }
 
     void OnLaneUp()
@@ -138,9 +147,17 @@ public class VehicleController : MonoBehaviour
         isSwitchingLanes = true;
 
         if (newLaneId > LaneId)
+        {
             LaneSwitchUpAudioSource.PlayOneShot(LaneSwitchUpAudioSource.clip);
+
+            RightIndicatorMat.EnableKeyword("_EMISSION");
+        }
         else
+        { 
             LaneSwitchDownAudioSource.PlayOneShot(LaneSwitchDownAudioSource.clip);
+
+            LeftIndicatorMat.EnableKeyword("_EMISSION");
+        }
 
         if (LaneSwitchVibrationProfile != null)
             LaneSwitchVibrationProfile.Vibrate();
@@ -165,6 +182,9 @@ public class VehicleController : MonoBehaviour
         LaneAudioSources[newLaneId].volume = 1.0f;
 
         LaneId = newLaneId;
+
+        LeftIndicatorMat.DisableKeyword("_EMISSION");
+        RightIndicatorMat.DisableKeyword("_EMISSION");
 
         isSwitchingLanes = false;
     }

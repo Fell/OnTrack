@@ -860,7 +860,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.879313, y: -0.0004674596, z: 0.09680869, w: -0.46630096}
+  m_LocalRotation: {x: -0.87097967, y: -0.0012345403, z: 0.096801996, w: 0.48168692}
   m_LocalPosition: {x: 8.500001, y: 0.000001013279, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1438,7 +1438,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4829c896dfb18fe4ab51a42bf4454abd, type: 2}
+  - {fileID: 2100000, guid: 952e6d9ecd4fb3341a78e1ce99d93ad6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1523,6 +1523,8 @@ MonoBehaviour:
   LaneSwitchUpAudioSource: {fileID: 1549906831}
   LaneSwitchDownAudioSource: {fileID: 123796095}
   TrackAnimator: {fileID: 541970298}
+  LeftIndicatorMat: {fileID: 2100000, guid: 4829c896dfb18fe4ab51a42bf4454abd, type: 2}
+  RightIndicatorMat: {fileID: 2100000, guid: 952e6d9ecd4fb3341a78e1ce99d93ad6, type: 2}
 --- !u!1 &879302715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,7 +2891,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691424410}
-  m_LocalRotation: {x: -0.879313, y: -0.0004674596, z: 0.09680869, w: -0.46630096}
+  m_LocalRotation: {x: -0.87097967, y: -0.0012345403, z: 0.096801996, w: 0.48168692}
   m_LocalPosition: {x: 8.500001, y: 0.000001013279, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

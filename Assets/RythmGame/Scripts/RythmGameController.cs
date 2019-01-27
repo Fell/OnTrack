@@ -44,6 +44,8 @@ public class RythmGameController : MonoBehaviour
     public GameObject noteXPrefab;
     public GameObject noteYPrefab;
 
+    public Transform NoteParent = null;
+
     public UIParticleSystem[] ParticleSystems;
 
     public GameObject GameHUDGO = null;
@@ -518,7 +520,7 @@ public class RythmGameController : MonoBehaviour
                 break;
         }
 
-        GameObject noteObject = GameObject.Instantiate(prefab, GameHUDGO.transform);
+        GameObject noteObject = GameObject.Instantiate(prefab, NoteParent);
         note.noteObject = noteObject;
         activeNotes.Add(note);
     }

@@ -28,6 +28,12 @@ public class VehicleController : MonoBehaviour
     public Material LeftIndicatorMat = null;
     public Material RightIndicatorMat = null;
 
+    public GameObject HarderLaneInfoGO = null;
+    public GameObject EasierLaneInfoGO = null;
+
+    public UIParticleSystem HarderLaneUIPS = null;
+    public UIParticleSystem EasierLaneUIPS = null;
+
     // Private variables
     int laneId = 1;
 
@@ -113,6 +119,9 @@ public class VehicleController : MonoBehaviour
 
         LeftIndicatorMat.DisableKeyword("_EMISSION");
         RightIndicatorMat.DisableKeyword("_EMISSION");
+
+        HarderLaneInfoGO.SetActive(true);
+        EasierLaneInfoGO.SetActive(true);
     }
 
     void OnReset()
@@ -134,6 +143,9 @@ public class VehicleController : MonoBehaviour
 
         LeftIndicatorMat.DisableKeyword("_EMISSION");
         RightIndicatorMat.DisableKeyword("_EMISSION");
+
+        HarderLaneInfoGO.SetActive(false);
+        EasierLaneInfoGO.SetActive(false);
     }
 
     void OnLaneUp()
@@ -163,12 +175,16 @@ public class VehicleController : MonoBehaviour
             LaneSwitchDownAudioSource.PlayOneShot(LaneSwitchDownAudioSource.clip);
 
             RightIndicatorMat.EnableKeyword("_EMISSION");
+
+            EasierLaneUIPS.Play();
         }
         else
         {
             LaneSwitchUpAudioSource.PlayOneShot(LaneSwitchUpAudioSource.clip);
 
             LeftIndicatorMat.EnableKeyword("_EMISSION");
+
+            HarderLaneUIPS.Play();
         }
 
         if (LaneSwitchVibrationProfile != null)
@@ -178,8 +194,8 @@ public class VehicleController : MonoBehaviour
         float to = lerpPercentValues[newLaneId];
 
         float percent = 0.0f;
-        
-        while(percent < 1.0f)
+
+        while (percent < 1.0f)
         {
             percent += (Time.deltaTime / LaneTransitionDuration);
 
@@ -197,6 +213,9 @@ public class VehicleController : MonoBehaviour
 
         LeftIndicatorMat.DisableKeyword("_EMISSION");
         RightIndicatorMat.DisableKeyword("_EMISSION");
+
+        EasierLaneInfoGO.SetActive(newLaneId < 2);
+        HarderLaneInfoGO.SetActive(newLaneId > 0);
 
         isSwitchingLanes = false;
     }

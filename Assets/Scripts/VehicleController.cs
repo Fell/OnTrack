@@ -148,13 +148,13 @@ public class VehicleController : MonoBehaviour
 
         if (newLaneId > LaneId)
         {
-            LaneSwitchUpAudioSource.PlayOneShot(LaneSwitchUpAudioSource.clip);
+            LaneSwitchDownAudioSource.PlayOneShot(LaneSwitchDownAudioSource.clip);
 
             RightIndicatorMat.EnableKeyword("_EMISSION");
         }
         else
-        { 
-            LaneSwitchDownAudioSource.PlayOneShot(LaneSwitchDownAudioSource.clip);
+        {
+            LaneSwitchUpAudioSource.PlayOneShot(LaneSwitchUpAudioSource.clip);
 
             LeftIndicatorMat.EnableKeyword("_EMISSION");
         }

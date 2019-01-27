@@ -21,6 +21,7 @@ public class VehicleController : MonoBehaviour
 
     public AudioSource LaneSwitchUpAudioSource = null;
     public AudioSource LaneSwitchDownAudioSource = null;
+    public AudioSource HornAudioSource = null;
 
     public Animator TrackAnimator = null;
 
@@ -63,6 +64,8 @@ public class VehicleController : MonoBehaviour
         InputController.Instance.OnResetButtonDown += OnReset;
         InputController.Instance.OnStartButtonDown += OnStart;
 
+        InputController.Instance.OnHornButtonDown += OnHorn;
+
         laneZero = Vector3.left * OffsetFactor;
         laneTwo = Vector3.right * OffsetFactor;
 
@@ -78,6 +81,9 @@ public class VehicleController : MonoBehaviour
             InputController.Instance.OnLaneUpButtonDown -= OnLaneUp;
             InputController.Instance.OnResetButtonDown -= OnReset;
             InputController.Instance.OnStartButtonDown -= OnStart;
+
+            InputController.Instance.OnHornButtonDown -= OnHorn;
+
         }
     }
 
@@ -140,6 +146,12 @@ public class VehicleController : MonoBehaviour
     {
         if (!isSwitchingLanes && LaneId >= 1)
             StartCoroutine(SwitchLaneTo(LaneId - 1));
+    }
+
+    void OnHorn()
+    {
+        if (HornAudioSource != null)
+            HornAudioSource.PlayOneShot(HornAudioSource.clip);
     }
 
     IEnumerator SwitchLaneTo(int newLaneId)

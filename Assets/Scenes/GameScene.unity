@@ -2165,6 +2165,21 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5297190868685219486, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297190868685219486, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: BypassListenerEffects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297190868685219486, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: BypassReverbZones
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2919847403339855273, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
       propertyPath: m_Volume
@@ -3816,7 +3831,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bf693f61970113b4caa6ad336d07d2cb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.33
   m_Pitch: 0.68
   Loop: 0
   Mute: 0

@@ -475,21 +475,21 @@ public class RythmGameController : MonoBehaviour
                     feedbackText.SetText("Perfect " + combo);
                     score += 250 * LaneMultiplier() + 10 * combo;
                     combo++;
-                    health += 7;
+                    health += 2;
                 }
                 else if(diff < 0.050f && diff > -0.050f)
                 {
                     feedbackText.SetText("Good " + combo);
                     score += 100 * LaneMultiplier() + 10 * combo;
                     combo++;
-                    health += 5;
+                    health += 1;
                 }
                 else if(diff < 0.066f && diff > -0.066f)
                 {
                     feedbackText.SetText("OK");
                     score += 50 * LaneMultiplier();
                     combo = 0;
-                    health += 2;
+                    health += 1;
                 }
                 else
                 {
@@ -558,7 +558,6 @@ public class RythmGameController : MonoBehaviour
 
     void ClearSong()
     {
-        endAudioSource.PlayOneShot(endAudioSource.clip);
         StartTextGO.SetActive(false);
         GameHUDGO.SetActive(false);
         EndHUD.SetActive(true);

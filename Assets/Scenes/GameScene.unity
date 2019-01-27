@@ -1549,9 +1549,9 @@ MonoBehaviour:
   EasierLaneIndicatorAnimator: {fileID: 1005417046}
   StartAudioSource: {fileID: 2006458877}
   LaneBackgroundColors:
-  - {r: 1, g: 0.7321251, b: 0.6084906, a: 1}
-  - {r: 1, g: 0.8887638, b: 0.6273585, a: 1}
-  - {r: 0.6518111, g: 0.8018868, b: 0.5333304, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
   Camera: {fileID: 534669904}
 --- !u!1 &879302715
 GameObject:
@@ -2075,20 +2075,25 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5297190868685219486, guid: 99397919d6ab066469c643691e0fd523,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5297190868685219486, guid: 99397919d6ab066469c643691e0fd523,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2998571411254828529, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 660.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
@@ -2140,21 +2145,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 660.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 97
-      objectReference: {fileID: 0}
     - target: {fileID: 8585838784782775770, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -2164,6 +2154,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297190868685219486, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5297190868685219486, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919847403339855273, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99397919d6ab066469c643691e0fd523, type: 3}
@@ -3728,10 +3733,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrrain4_camera_export
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 3ea4fda4368d40f47a167b7843d8b11b, type: 2}
     - target: {fileID: 400000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1526.6896
@@ -3780,6 +3781,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3ea4fda4368d40f47a167b7843d8b11b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
 --- !u!1 &2006458876

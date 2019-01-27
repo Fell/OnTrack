@@ -21,6 +21,12 @@ public class VehicleController : MonoBehaviour
 
     public AudioSource LaneSwitchUpAudioSource = null;
     public AudioSource LaneSwitchDownAudioSource = null;
+
+    public Animator TrackAnimator = null;
+
+    // Private variables
+    int laneId = 1;
+
     Vector3 laneOne = Vector3.zero;
     Vector3 laneZero;
     Vector3 laneTwo;
@@ -29,6 +35,7 @@ public class VehicleController : MonoBehaviour
     float[] lerpPercentValues = new float[] { 0.0f, 0.5f, 1.0f };
 
     bool isSwitchingLanes = false;
+
     FluffyUnderware.Curvy.Controllers.CurvyController curvyController = null;
 
     // Aewake function
@@ -45,6 +52,9 @@ public class VehicleController : MonoBehaviour
             Destroy(gameObject);
     }
 
+=======
+    
+>>>>>>> d4306a68461f01cfcb9bc1173c919315dcc0b760
     // Start function
     void Start()
     {
@@ -80,10 +90,12 @@ public class VehicleController : MonoBehaviour
     // Helper functions
     void OnStart()
     {
+
         if (curvyController.PlayState == FluffyUnderware.Curvy.Controllers.CurvyController.CurvyControllerState.Playing)
             return;
 
         LaneId = 1;
+
         lerpPercent = 0.5f;
 
         LaneAudioSources[0].Play();
@@ -93,8 +105,7 @@ public class VehicleController : MonoBehaviour
         LaneAudioSources[2].Play();
         LaneAudioSources[2].volume = 0.0f;
 
-        curvyController.Position = 0.0f;
-        curvyController.Play();
+        TrackAnimator.SetBool("IsRunning", true);
 
         InputController.Instance.OnLaneDownButtonDown += OnLaneDown;
         InputController.Instance.OnLaneUpButtonDown += OnLaneUp;
@@ -112,8 +123,7 @@ public class VehicleController : MonoBehaviour
         LaneAudioSources[2].Stop();
         LaneAudioSources[2].volume = 0.0f;
 
-        curvyController.Position = 0.0f;
-        curvyController.Stop();
+        TrackAnimator.SetBool("IsRunning", false);
 
         InputController.Instance.OnLaneDownButtonDown -= OnLaneDown;
         InputController.Instance.OnLaneUpButtonDown -= OnLaneUp;

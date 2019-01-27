@@ -66,6 +66,7 @@ public class RythmGameController : MonoBehaviour
 
     int score = 0;
     int combo = 0;
+    int health = 100;
 
     // Awake function
     private void Awake()
@@ -119,7 +120,7 @@ public class RythmGameController : MonoBehaviour
             "X-X----A-AB-----" +
             "X-----AA----A---" + // CHIMES 1
             "X-----YY--------" +
-            "----AA-B-B-B-B-B" +
+            "----AA-X-X-Y-Y-Y" +
             "-----X-X--------" +
             "--A-A-BB-A-A-A-X" + // CHORUS 2
             "-X--------------" +
@@ -135,10 +136,10 @@ public class RythmGameController : MonoBehaviour
             "X-X----A-AB-----" +
             "X-----AA----A---" + // CHIMES 2
             "X-----YY--------" +
-            "----AA-A-B-A-X-A" +
+            "----AA-X-X-Y-Y-Y" +
             "-----A-A--------" +
             "----A-XX--------" + // SLAP
-            "---A-A-B-B-X-X--" +
+            "---A-A-B-B-Y-Y--" +
             "----A-XX--------" +
             "------------Y-Y-" + // SOLO
             "Y-----XX-A-A-A-A" +

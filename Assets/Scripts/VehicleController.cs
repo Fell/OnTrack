@@ -34,6 +34,14 @@ public class VehicleController : MonoBehaviour
     public UIParticleSystem HarderLaneUIPS = null;
     public UIParticleSystem EasierLaneUIPS = null;
 
+    public Animator HarderLaneIndicatorAnimator = null;
+    public Animator EasierLaneIndicatorAnimator = null;
+
+    public AudioSource StartAudioSource = null;
+
+    public Color[] LaneBackgroundColors;
+    public Camera Camera = null;
+
     // Private variables
     int laneId = 1;
 
@@ -105,6 +113,8 @@ public class VehicleController : MonoBehaviour
         LaneId = 1;
         lerpPercent = 0.5f;
 
+        Camera.backgroundColor = LaneBackgroundColors[LaneId];
+
         LaneAudioSources[0].Play();
         LaneAudioSources[0].volume = 0.0f;
         LaneAudioSources[1].Play();
@@ -122,12 +132,20 @@ public class VehicleController : MonoBehaviour
 
         HarderLaneInfoGO.SetActive(true);
         EasierLaneInfoGO.SetActive(true);
+
+        if (StartAudioSource != null)
+            StartAudioSource.PlayOneShot(StartAudioSource.clip);
+
+        InputController.Instance.OnResetButtonDown += OnReset;
+        InputController.Instance.OnStartButtonDown -= OnStart;
     }
 
     void OnReset()
     {
         LaneId = 1;
         lerpPercent = 0.5f;
+
+        Camera.backgroundColor = LaneBackgroundColors[LaneId];
 
         LaneAudioSources[0].Stop();
         LaneAudioSources[0].volume = 0.0f;
@@ -138,6 +156,8 @@ public class VehicleController : MonoBehaviour
 
         TrackAnimator.SetBool("IsRunning", false);
 
+        
+
         InputController.Instance.OnLaneDownButtonDown -= OnLaneDown;
         InputController.Instance.OnLaneUpButtonDown -= OnLaneUp;
 
@@ -146,6 +166,9 @@ public class VehicleController : MonoBehaviour
 
         HarderLaneInfoGO.SetActive(false);
         EasierLaneInfoGO.SetActive(false);
+
+        InputController.Instance.OnResetButtonDown -= OnReset;
+        InputController.Instance.OnStartButtonDown += OnStart;
     }
 
     void OnLaneUp()
@@ -177,6 +200,7 @@ public class VehicleController : MonoBehaviour
             RightIndicatorMat.EnableKeyword("_EMISSION");
 
             EasierLaneUIPS.Play();
+            EasierLaneIndicatorAnimator.SetTrigger("LaneChange");
         }
         else
         {
@@ -185,6 +209,7 @@ public class VehicleController : MonoBehaviour
             LeftIndicatorMat.EnableKeyword("_EMISSION");
 
             HarderLaneUIPS.Play();
+            HarderLaneIndicatorAnimator.SetTrigger("LaneChange");
         }
 
         if (LaneSwitchVibrationProfile != null)
@@ -201,6 +226,8 @@ public class VehicleController : MonoBehaviour
 
             LaneAudioSources[LaneId].volume = 1.0f - percent;
             LaneAudioSources[newLaneId].volume = percent;
+
+            Camera.backgroundColor = Color.Lerp(LaneBackgroundColors[LaneId], LaneBackgroundColors[newLaneId], percent);
 
             lerpPercent = Mathf.Lerp(from, to, percent);
             yield return null;

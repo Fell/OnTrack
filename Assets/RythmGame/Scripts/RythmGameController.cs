@@ -51,6 +51,10 @@ public class RythmGameController : MonoBehaviour
     public GameObject GameHUDGO = null;
     public GameObject StartTextGO = null;
 
+    public GameObject EndHUD;
+    public TMPro.TextMeshProUGUI finalRatingText;
+    public TMPro.TextMeshProUGUI finalScoreText;
+
     public Animator RythmTargetAnimator = null;
 
     float noteRampTime = 1.5f;
@@ -105,6 +109,7 @@ public class RythmGameController : MonoBehaviour
     {
         StartTextGO.SetActive(true);
         GameHUDGO.SetActive(false);
+        EndHUD.SetActive(false);
         timer = 0;
         score = 0;
         lerpedScore = 0;
@@ -315,6 +320,7 @@ public class RythmGameController : MonoBehaviour
 
         StartTextGO.SetActive(false);
         GameHUDGO.SetActive(true);
+        EndHUD.SetActive(false);
     }
 
     public void StartModifier(PowerUpTypes types)
@@ -385,6 +391,9 @@ public class RythmGameController : MonoBehaviour
                 note.delete = true;
             }
         }
+
+        if(health <= 0)
+            EndSong(false);
 
         health = Mathf.Clamp(health, 0, 100);
         healthText.SetText(health.ToString() + "%");
@@ -529,5 +538,17 @@ public class RythmGameController : MonoBehaviour
         GameObject noteObject = GameObject.Instantiate(prefab, NoteParent);
         note.noteObject = noteObject;
         activeNotes.Add(note);
+    }
+
+    void EndSong(bool cleared)
+    {
+        StartTextGO.SetActive(false);
+        GameHUDGO.SetActive(false);
+        EndHUD.SetActive(true);
+
+        isPlaying = false;
+
+        finalScoreText.SetText(score.ToString("N0"));
+        finalRatingText.SetText(cleared ? "Welcome Home!" : "You are lost...");
     }
 }

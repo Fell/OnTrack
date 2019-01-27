@@ -1911,12 +1911,97 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2364061504493700922, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6af5d8c783382ef4cbc8cf2ec3d46e8e, type: 3}
     - target: {fileID: 9032719048723799565, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9032719048723799565, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998571411254828529, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 660.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702320908604742360, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_text
+      value: YOU ARE LOST!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8195090445299138146, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266421585227432191, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266421585227432191, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8585838784782775770, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8585838784782775770, guid: 99397919d6ab066469c643691e0fd523,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -3230,10 +3315,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrrain4_camera_export
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 3ea4fda4368d40f47a167b7843d8b11b, type: 2}
     - target: {fileID: 400000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1526.6896
@@ -3282,6 +3363,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3ea4fda4368d40f47a167b7843d8b11b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea71db38aa74034faa5fc73bb2edd39, type: 3}
 --- !u!1 &2006458876

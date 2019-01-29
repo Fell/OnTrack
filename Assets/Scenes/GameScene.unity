@@ -805,7 +805,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.24786684, y: 0.9447299, z: -0.0094279535, w: 0.21437962}
+  m_LocalRotation: {x: -0.24786678, y: 0.9447299, z: -0.009427949, w: 0.21437961}
   m_LocalPosition: {x: -1530.8759, y: -513.00195, z: 1563.3513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2186,6 +2186,181 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.r
+      value: 0.49411768
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.g
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.b
+      value: 0.8862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.r
+      value: 0.49411768
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.g
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.b
+      value: 0.8862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793959866580159653, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219689546232856480, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219689546232856480, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.r
+      value: 0.8862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219689546232856480, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219689546232856480, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219689546232856480, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.r
+      value: 0.8862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219689546232856480, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219689546232856480, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 14065360380696388, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.r
+      value: 0.81568635
+      objectReference: {fileID: 0}
+    - target: {fileID: 14065360380696388, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.g
+      value: 0.5568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 14065360380696388, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.b
+      value: 0.8235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 14065360380696388, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 14065360380696388, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.r
+      value: 0.81568635
+      objectReference: {fileID: 0}
+    - target: {fileID: 14065360380696388, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.g
+      value: 0.5568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 14065360380696388, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.b
+      value: 0.8235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 573251644781284485, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.r
+      value: 0.28627452
+      objectReference: {fileID: 0}
+    - target: {fileID: 573251644781284485, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.g
+      value: 0.854902
+      objectReference: {fileID: 0}
+    - target: {fileID: 573251644781284485, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key1.b
+      value: 0.48627454
+      objectReference: {fileID: 0}
+    - target: {fileID: 573251644781284485, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 573251644781284485, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.r
+      value: 0.28627452
+      objectReference: {fileID: 0}
+    - target: {fileID: 573251644781284485, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.g
+      value: 0.854902
+      objectReference: {fileID: 0}
+    - target: {fileID: 573251644781284485, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: ColorOverLifetime.key0.b
+      value: 0.48627454
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078665548148777984, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403836860847964697, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403836860847964697, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7720857351086469010, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368187686876748292, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368187686876748292, guid: 99397919d6ab066469c643691e0fd523,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99397919d6ab066469c643691e0fd523, type: 3}
 --- !u!1 &1005417044 stripped
@@ -3419,7 +3594,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691424410}
-  m_LocalRotation: {x: -0.24786684, y: 0.9447299, z: -0.0094279535, w: 0.21437962}
+  m_LocalRotation: {x: -0.24786678, y: 0.9447299, z: -0.009427949, w: 0.21437961}
   m_LocalPosition: {x: -1530.8759, y: -513.00195, z: 1563.3513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

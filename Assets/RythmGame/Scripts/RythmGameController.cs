@@ -422,28 +422,24 @@ public class RythmGameController : MonoBehaviour
     void OnNoteA()
     {
         HitNote(NoteType.A);
-        FlashRing(Color.green);
         RythmTargetAnimator.SetTrigger("Hit");
     }
 
     void OnNoteB()
     {
         HitNote(NoteType.B);
-        FlashRing(Color.red);
         RythmTargetAnimator.SetTrigger("Hit");
     }
 
     void OnNoteX()
     {
         HitNote(NoteType.X);
-        FlashRing(Color.blue);
         RythmTargetAnimator.SetTrigger("Hit");
     }
 
     void OnNoteY()
     {
         HitNote(NoteType.Y);
-        FlashRing(Color.yellow);
         RythmTargetAnimator.SetTrigger("Hit");
     }
 
